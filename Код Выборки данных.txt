@@ -1,0 +1,66 @@
+﻿SELECT tab_groups.Name, tab_teachers.surname, tab_teachers.name
+FROM tab_group_lectures
+JOIN tab_groups ON tab_group_lectures.group_id = tab_groups.id
+JOIN tab_lectures ON tab_group_lectures.lecture_ID = tab_lectures.id
+JOIN tab_teachers ON tab_lectures.teacher_Id = tab_teachers.id;
+
+SELECT tab_faculties.Name,tab_faculties.financing,tab_departments.financing
+from tab_departments,tab_faculties 
+WHERE tab_departments.facultyId=tab_faculties.id AND tab_faculties.financing<tab_departments.financing;
+
+SELECT tab_curators.surname,tab_groups.Name
+FROM tab_groups,tab_curators,tab_groupscurators
+where tab_groupscurators.curatorID=tab_curators.id
+and tab_groupscurators.groupID=tab_groups.id;
+
+SELECT tab_groups.Name, tab_teachers.surname, tab_teachers.name
+FROM tab_group_lectures
+         JOIN tab_groups ON tab_group_lectures.group_id = tab_groups.id
+         JOIN tab_lectures ON tab_group_lectures.lecture_ID = tab_lectures.id
+         JOIN tab_teachers ON tab_lectures.teacher_Id = tab_teachers.id
+WHERE tab_groups.name='R107';
+
+SELECT tab_faculties.Name,tab_teachers.surname
+from tab_teachers,tab_faculties,tab_group_lectures,tab_lectures,tab_departments,tab_groups,tab_groupscurators
+WHERE tab_group_lectures.group_id = tab_groups.id
+and tab_lectures.teacher_Id = tab_teachers.id
+and tab_faculties.id=tab_departments.facultyId
+and tab_groupscurators.groupID=tab_groups.id;
+
+SELECT tab_groups.Name,tab_departments.Name
+from tab_departments,tab_groups
+where tab_departments.id=tab_groups.departmrnt_Id;
+
+SELECT tab_subjects.name,tab_teachers.name,tab_teachers.surname
+from tab_teachers,tab_lectures,tab_subjects
+WHERE tab_lectures.teacher_Id = tab_teachers.id
+and tab_lectures.subject_Id=tab_subjects.id
+and tab_teachers.name='Samantha'
+and tab_teachers.surname='Adams';
+
+SELECT tab_departments.name,tab_subjects.Name
+from tab_departments,tab_groups,tab_subjects,tab_group_lectures,tab_lectures
+where tab_groups.departmrnt_Id=tab_departments.id
+and tab_subjects.id=tab_lectures.subject_Id
+and tab_group_lectures.lecture_ID=tab_lectures.id
+and tab_subjects.Name='Database Theory';
+
+
+SELECT tab_groups.name, tab_faculties.name
+from tab_departments,tab_faculties,tab_groups
+where tab_departments.facultyId=tab_faculties.id
+  and tab_groups.departmrnt_Id=tab_departments.id
+  and tab_faculties.Name='Computer Science';
+
+SELECT tab_groups.name, tab_faculties.name
+from tab_departments,tab_faculties,tab_groups
+where tab_departments.facultyId=tab_faculties.id
+  and tab_groups.departmrnt_Id=tab_departments.id
+  and tab_groups.year='5';
+
+SELECT tab_teachers.surname, tab_teachers.name,tab_subjects.Name,tab_groups.Name,tab_lectures.lecture_room
+FROM tab_group_lectures,tab_groups,tab_teachers,tab_subjects,tab_lectures
+WHERE tab_lectures.subject_Id=tab_subjects.id
+  and tab_lectures.teacher_Id = tab_teachers.id
+and tab_lectures.lecture_room='b103';
+

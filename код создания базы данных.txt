@@ -1,0 +1,533 @@
+﻿create table tab_curators(
+ id INT NOT NULL PRIMARY KEY auto_increment,
+ name nvarchar(100) NOT NULL check( name != '' ),
+ surname varchar(100) NOT NULL check( name != '' )
+);
+
+create table tab_departments(
+    id INT NOT NULL PRIMARY KEY auto_increment,
+    Name nvarchar(100) NOT NULL unique check( name != '' ),
+    financing double NOT NULL default 0  check(financing>0),
+    facultyId int NOT Null references tab_faculties(id)   
+);
+
+create table tab_faculties(
+    id INT NOT NULL PRIMARY KEY auto_increment,
+    financing double NOT NULL default 0  check(financing>0),
+    Name nvarchar(100) NOT NULL unique check( name != '' )    
+);
+
+create table tab_groups
+(
+    id            INT          NOT NULL PRIMARY KEY auto_increment,
+    financing     double       NOT NULL default 0 check (financing > 0),
+    Name          nvarchar(70) NOT NULL unique check ( name != '' ),
+    year int NOT NULL check (1<=year<=5),
+    departmrnt_Id int  NOT Null references tab_departments (id)
+);
+
+create table tab_group_lectures
+(
+    id            INT          NOT NULL PRIMARY KEY auto_increment,
+    group_id    int          NOT Null references tab_groups (id),
+    lecture_ID     int          NOT Null references tab_lectures (id)
+);
+create table tab_lectures
+(
+    id            INT          NOT NULL PRIMARY KEY auto_increment,
+    lecture_room nvarchar(100) NOT NULL  check ( lecture_room != '' ),
+    subject_Id int  NOT Null references tab_subjects (id),
+    teacher_Id int  NOT Null references tab_teachers (id)
+    
+);
+
+create table tab_subjects(
+ id INT NOT NULL PRIMARY KEY auto_increment,
+Name nvarchar(100) NOT NULL unique check( name != '' )                         
+);
+create table tab_teachers
+(
+    id            INT          NOT NULL PRIMARY KEY auto_increment,
+    name nvarchar(100) NOT NULL  check ( name != '' ),
+    surname nvarchar(100) NOT NULL  check ( name != '' ),
+    salary    double       NOT NULL default 0 check (salary > 0)
+    
+);
+
+create table tab_groupscurators
+(
+    id            INT          NOT NULL PRIMARY KEY auto_increment,
+    curatorID int NOT NULL   references tab_curators (id),
+    groupID int NOT NULL  references tab_groups (id)
+);
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'1', '1' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'1', '2' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'1', '3' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'1', '4' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'1', '5' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'2', '6' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'2', '7' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'2', '8' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'2', '9' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'2', '10' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'3', '11' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'3', '12' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'3', '13' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'3', '14' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'3', '15' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'4', '16' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'4', '17' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'4', '18' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'4', '19' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'4', '20' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'5', '21' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'5', '22' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'5', '23' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'5', '24' );
+INSERT INTO host1323541_sbd04.tab_groupscurators ( id, curatorID, groupID)
+VALUES (DEFAULT,'5', '25' );
+
+
+INSERT INTO host1323541_sbd04.tab_curators ( id, name, surname)
+VALUES (DEFAULT,'Artem', 'Pozdnyakov' );
+
+INSERT INTO host1323541_sbd04.tab_curators ( id, name, surname)
+VALUES (DEFAULT, 'Roman', 'Poltoruihin');
+
+INSERT INTO host1323541_sbd04.tab_curators ( id, name, surname)
+VALUES ( DEFAULT, 'Tatyana', 'Khozeeva');
+
+INSERT INTO host1323541_sbd04.tab_curators ( id, name, surname)
+VALUES (DEFAULT ,'Svetlana', 'Yakovleva');
+
+INSERT INTO host1323541_sbd04.tab_faculties ( id, financing, name)
+VALUES (DEFAULT ,'10000.00', 'Computer Science');
+
+INSERT INTO host1323541_sbd04.tab_faculties ( id, financing, name)
+VALUES (DEFAULT ,'8000.00', 'Data Science');
+
+INSERT INTO host1323541_sbd04.tab_faculties ( id, financing, name)
+VALUES (DEFAULT ,'12000.00', 'NetWork Science');
+
+INSERT INTO host1323541_sbd04.tab_faculties ( id, financing, name)
+VALUES (DEFAULT ,'11000.00', 'Programming science');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'4000.00', 'очный','4');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'2000.00', 'очный1','4');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'2000.00', 'вечерний','4');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'3000.00', 'заочный','4');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'4000.00', 'очный2','3');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'2000.00', 'очный3','3');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'3000.00', 'вечерний2','3');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'3000.00', 'заочный2','3');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'2000.00', 'очный4','2');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'2000.00', 'очный5','2');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'2000.00', 'вечерний3','2');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'2000.00', 'заочный3','2');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'2000.00', 'очный6','1');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'3000.00', 'очный7','1');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'3000.00', 'вечерний4','1');
+
+INSERT INTO host1323541_sbd04.tab_departments ( id, financing, name,facultyId)
+VALUES (DEFAULT ,'2000.00', 'заочный4','1');
+
+
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD01', '1','1');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00', 'SPD02', '1','2');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD03',  '1','3');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD04',  '1','4');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD05',  '1','5');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD06',  '1','6');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD07',  '1','7');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD08',  '1','8');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD09', '1','9');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD010' ,'1','10');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD011',  '1','11');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD012',  '1','12');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD013',  '1','13');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD014',  '1','14');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD015',  '1','15');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD016',  '1','16');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD017', '1','17');
+
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD018',  '2','1');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD019',  '2','2');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD020',  '2','3');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00',' SPD021', '2','4');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD022',  '2','5');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD023',  '2','6');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD024', '2','7');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD025',  '2','8');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD026',  '2','9');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD027',  '2','10');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD028', '2','11');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD029',  '2','12');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD030',  '2','13');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD031',  '2','14');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD032',  '2','15');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD034',  '2','16');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00', 'SPD33', '2','17');
+
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD35',  '3','1');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD36',  '3','2');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD37',  '3','3');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD38',  '3','4');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD39',  '3','5');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD040',  '3','6');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD41',  '3','7');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD42',  '3','8');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD43',  '3','9');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD44',  '3','10');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD45',  '3','11');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD46',  '3','12');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD47',  '3','13');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD48',  '3','14');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD49',  '3','15');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD50',  '3','16');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD51',  '3','17');
+
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD52',  '4','1');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD53',  '4','2');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD54',  '4','3');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD55', '4','4');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD56',  '4','5');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD57', '4','6');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD58', '4','7');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD59', '4','8');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD60',  '4','9');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD61',  '4','10');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD62',  '4','11');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD63', '4','12');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD64',  '4','13');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD65',  '4','14');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD66',  '4','15');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00', 'SPD67', '4','16');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD68',  '4','17');
+
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD69',  '5','1');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD70',  '5','2');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD71',  '5','3');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD72',  '5','4');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00', 'SPD73', '5','5');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD74',  '5','6');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD075',  '5','7');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD76',  '5','8');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD77',  '5','9');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD78', '5','10');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD79',  '5','11');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD80',  '5','12');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD81',  '5','13');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD82',  '5','14');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD83',  '5','15');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00', 'SPD84',  '5','16');
+INSERT INTO host1323541_sbd04.tab_groups ( id, financing, name,year,departmrnt_Id)
+VALUES (DEFAULT ,'2000.00','SPD85',  '5','17');
+
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'1','1');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'2','1');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'3','1');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'4','1');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'5','1');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'6','1');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'7','1');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'8','1');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'9','1');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'10','1');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'11','2');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'12','2');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'13','2');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'14','2');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'15','2');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'16','2');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'17','2');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'18','3');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'19','3');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'20','3');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'21','3');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'22','3');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'23','3');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'24','3');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'25','3');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'26','3');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'27','4');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'28','4');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'29','4');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'30','4');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'31','4');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'32','4');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'33','4');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'34','4');
+
+INSERT INTO host1323541_sbd04.tab_group_lectures ( id, group_id, lecture_ID)
+VALUES (DEFAULT ,'35','4');
+
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'A01','1','1');
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'A01','2','2');
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'A01','3','3');
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'A01','4','4');
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'A01','5','5');
+
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'b103','1','1');
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'b103','2','2');
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'b103','3','3');
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'b103','4','4');
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'b103','5','5');
+
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'c103','1','1');
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'c103','2','2');
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'c103','3','3');
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'c103','4','4');
+INSERT INTO host1323541_sbd04.tab_lectures ( id, lecture_room, subject_Id,teacher_Id)
+VALUES (DEFAULT,'c103','5','5');
+
+INSERT INTO host1323541_sbd04.tab_subjects ( id, name)
+VALUES ('1','Database Theory');
+
+INSERT INTO host1323541_sbd04.tab_subjects ( id, name)
+VALUES ('2','Programming in С#');
+
+
+INSERT INTO host1323541_sbd04.tab_subjects ( id, name)
+VALUES ('3','Дизайн Интерьеров');
+
+
+INSERT INTO host1323541_sbd04.tab_subjects ( id, name)
+VALUES ('4','Психология работы в команде');
+
+
+INSERT INTO host1323541_sbd04.tab_subjects ( id, name)
+VALUES ('5','Администрирование компьюторных сетей');
+
+INSERT INTO host1323541_sbd04.tab_teachers ( id, name,surname,salary)
+VALUES (default,'Samantha','Adams','1200');
+
+INSERT INTO host1323541_sbd04.tab_teachers ( id, name,surname,salary)
+VALUES (default,'Natalya','Khasanova','1100');
+
+INSERT INTO host1323541_sbd04.tab_teachers ( id, name,surname,salary)
+VALUES (default,'Aleksandr','Egorov','1500');
+
+INSERT INTO host1323541_sbd04.tab_teachers ( id, name,surname,salary)
+VALUES (default,'Husein','Hoze','1100');
+
+INSERT INTO host1323541_sbd04.tab_teachers ( id, name,surname,salary)
+VALUES (default,'Andreis','Ionovs','1200');
